@@ -89,8 +89,8 @@ def fetch_all_ohlcv(
 
 def _clean_dtypes(df: pd.DataFrame) -> pd.DataFrame:
     """Convertit les colonnes dans les bons types."""
-    df["Open time"] = pd.to_datetime(df["Open time"], unit="ms", utc=True)
-    df["Close time"] = pd.to_datetime(df["Close time"], unit="ms", utc=True)
+    df["Open time"] = pd.to_datetime(df["Open time"].astype(int), unit="ms", utc=True)
+    df["Close time"] = pd.to_datetime(df["Close time"].astype(int), unit="ms", utc=True)
 
     numeric_cols = ["Open", "High", "Low", "Close", "Volume",
                     "Quote asset volume", "Taker buy base asset volume",

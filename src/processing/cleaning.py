@@ -13,8 +13,8 @@ from pathlib import Path
 
 import pandas as pd
 
-RAW_DIR = Path("data/raw")
-PROCESSED_DIR = Path("data/processed")
+RAW_DIR = Path(__file__).parents[2] / "data" / "raw"
+PROCESSED_DIR = Path(__file__).parents[2] / "data" / "processed"
 
 
 # ── Chargement ────────────────────────────────────────────────────────────────
@@ -62,11 +62,7 @@ def align_pairs(
     """
     Aligne deux séries OHLCV sur leurs timestamps communs (inner join).
     Les bougies sans correspondance dans l'autre série sont supprimées.
-
-    Pourquoi c'est important :
-        Un spread calculé sur des timestamps non-alignés compare des prix
-        à des moments différents → signal bruité et potentiellement faux.
-
+    
     Returns:
         (df_a_aligned, df_b_aligned) — même index, même longueur.
     """
@@ -81,7 +77,7 @@ def align_pairs(
     print(f"  Timestamps communs : {len(common_index):,}")
 
     if lost_a > 100 or lost_b > 100:
-        print(f"  ⚠ Beaucoup de bougies perdues — vérifie les gaps avec detect_gaps()")
+        print(f"Beaucoup de bougies perdues")
 
     return df_a.loc[common_index], df_b.loc[common_index]
 
