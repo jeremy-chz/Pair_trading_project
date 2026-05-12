@@ -1,0 +1,31 @@
+# ── Data ─────────────────────────────────────────────────────────────────────
+# Les CSV ne sont pas versionnés (trop volumineux, se régénèrent via get_data.py)
+data/raw/**/*.csv
+data/processed/**/*.csv
+
+# ── Environnement Python ──────────────────────────────────────────────────────
+.env
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Jupyter ───────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ── OS ────────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── IDE ───────────────────────────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+
+# ── Logs & outputs ────────────────────────────────────────────────────────────
+logs/
+*.log
