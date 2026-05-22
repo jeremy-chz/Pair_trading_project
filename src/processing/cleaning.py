@@ -42,7 +42,7 @@ def load_ohlcv(symbol: str, timeframe: str) -> pd.DataFrame:
     df = pd.read_csv(filepath)
 
     for col in ["Open time", "Close time"]:
-        df[col] = pd.to_datetime(df[col], utc=True)
+        df[col] = pd.to_datetime(df[col], format='mixed', utc=True)
 
     df = df.set_index("Open time").sort_index()
 

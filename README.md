@@ -7,17 +7,17 @@ sur crypto (BTC/ETH), avec extension progressive vers les actions et le machine 
 
 Partir des fondamentaux statistiques (cointégration, mean-reversion) pour arriver
 à des modèles ML quantitatifs sérieux (LSTM, RL, Gaussian Processes).
-Chaque phase est documentée pour que le raisonnement soit compréhensible, pas juste le code.
+Chaque phase est documentée pour que mon raisonnement soit compréhensible, pas juste le code.
 
 ## Roadmap
 
 | Phase | Contenu | Status |
 |-------|---------|--------|
-| 1 | Data engineering — ingestion, alignement, log-returns | 🔄 En cours |
-| 2 | Cointégration — ADF, Johansen, spread, z-score | ⏳ |
-| 3 | Backtesting — walk-forward, Sharpe, drawdown | ⏳ |
-| 4 | Séries temporelles — ARIMA, GARCH, Kalman, Ornstein-Uhlenbeck | ⏳ |
-| 5 | ML quantitatif — LSTM, RL, Gaussian Processes | ⏳ |
+| 1 | Data engineering — ingestion, alignement, log-returns | En cours |
+| 2 | Cointégration — ADF, Johansen, spread, z-score | x |
+| 3 | Backtesting — walk-forward, Sharpe, drawdown | x |
+| 4 | Séries temporelles — ARIMA, GARCH, Kalman, Ornstein-Uhlenbeck | x |
+| 5 | ML quantitatif — LSTM, RL, Gaussian Processes | x |
 
 ## Structure
 

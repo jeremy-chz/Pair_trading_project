@@ -128,3 +128,57 @@ def _format_xaxis(ax) -> None:
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m"))
     ax.xaxis.set_major_locator(mdates.MonthLocator(interval=6))
     plt.setp(ax.xaxis.get_majorticklabels(), rotation=30, ha="right")
+
+
+
+"""def plot_spread(spread: pd.Series, figsize: tuple = (14, 5)) -> None:
+    Visualise le spread brut avec sa moyenne.
+    fig, ax = plt.subplots(figsize=figsize)
+    ax.plot(spread.index, spread, linewidth=0.8, color='steelblue')
+    ax.axhline(spread.mean(), color='red', linestyle='--', linewidth=1, 
+               label=f'Moyenne : {spread.mean():.0f}')
+    ax.set_title('Spread BTC − β·ETH')
+    ax.legend()
+    ax.grid(alpha=0.3)
+    _format_xaxis(ax)
+    plt.tight_layout()
+    plt.show()"""
+
+
+import matplotlib.dates as mdates
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+import pandas as pd
+
+def plot_spread(spread: pd.Series, figsize: tuple = (14, 5)) -> None:
+    """Visualise le spread avec une gestion adaptative de l'axe X."""
+    fig, ax = plt.subplots(figsize=figsize)
+    
+    ax.plot(spread.index, spread, linewidth=1, color='steelblue', label='Spread')
+    
+    mean_val = spread.mean()
+    ax.axhline(mean_val, color='red', linestyle='--', linewidth=1, 
+               label=f'Moyenne : {mean_val:.2f}')
+        
+    # Calcul de la durée totale des données en jours
+    delta_days = (spread.index[-1] - spread.index[0]).days
+    
+    if delta_days <= 7:
+        ax.xaxis.set_major_locator(mdates.DayLocator())
+        ax.xaxis.set_major_formatter(mdates.DateFormatter('%d %b'))
+        ax.xaxis.set_minor_locator(mdates.HourLocator(interval=6))
+    elif delta_days <= 90:
+        ax.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=mdates.MO))
+        ax.xaxis.set_major_formatter(mdates.DateFormatter('%d %b'))
+    else:
+        ax.xaxis.set_major_locator(mdates.MonthLocator())
+        ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %Y'))
+
+    fig.autofmt_xdate() 
+    
+    ax.set_title(f'Spread BTC − β·ETH ({delta_days} jours)')
+    ax.legend()
+    ax.grid(visible=True, alpha=0.3)
+    
+    plt.tight_layout()
+    plt.show()
